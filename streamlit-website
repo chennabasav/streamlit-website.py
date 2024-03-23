@@ -1,0 +1,118 @@
+from PIL import Image
+import requests
+import streamlit as st
+from streamlit_lottie import st_lottie
+
+# Find more emojis here:https://www.webfx.com/tools/emoji-cheat-sheet/
+st.set_page_config(page_title='Movie Review',page_icon=':tada:', layout='wide')
+def load_lottieurl(url):
+    r=requests.get(url)
+    if r.status_code != 200:
+        return None
+    return r.json()
+
+# USE LOCAL CSS
+def local_css(file_name):
+    with open(file_name) as f:
+        st.markdown(f'<style>{f.read()}</style>',unsafe_allow_html=True)
+
+local_css('style/style.css')
+
+# ---- LOAD ASSETS ----
+lottie_coding=load_lottieurl('https://lottie.host/21a40b13-707f-48d5-afd8-e6f7186c6122/WrMfw724Qg.json')
+img_review_form=Image.open('imag yt _movie review.png.jpg')
+img_boxoffice_animation=Image.open('image yt_boxoffice.png.jpg')
+
+# ---- HEADER SECTION ----
+st.subheader('Hi, I am Chennabasava:wave')
+st.title('A Movie Reviewer From India')
+st.write('I am passionate about making videos about review of recently released movies and their box-office collection')
+st.write('[Learn more >](https://pythonandvba.com)')
+
+
+# ---- WHAT I DO ----
+with st.container():
+    st.write('---')
+    left_column, right_column = st.columns(2)
+    with left_column:
+        st.header('What I do')
+        st.write('##')
+        st.write(
+            """
+            on my youtube channel I am creating video for who: 
+            - Needs updates about recently released movies
+            - Review about the recently released movies 
+            - also box-office collection details
+            - caste and crew of a movie."
+            
+            If this interesting to you,consider subscribing and turning on the notifications,so you will get updates. 
+            """
+        )
+        st.write('[Youtube channel>](www.youtube.com/@chennabasavannh4799)')
+    with right_column:
+        st_lottie(lottie_coding,height=300,key='coding')
+
+# ----PROJECTS----
+with st.container():
+    st.write('---')
+    st.header('My Projects')
+    st.write('##')
+    image_column,text_column=st.columns((1,2))
+    with image_column:
+        st.image(img_boxoffice_animation)
+    with text_column:
+        st.subheader('To know about information about Box-office collections')
+        st.write(
+            """
+            To know the latest box-office collectins!
+            It makes you more interesting to watch videos
+            In these videos i will show complete detail about box-office collection
+            """
+        )
+
+        st.markdown('[Watch Video...](https://youtu.be/5nM4vUu-VHM?si=fF_22x-HO6WTsYrC')
+
+with st.container():
+    image_column,text_column=st.columns((1,2))
+    with image_column:
+        st.image(img_review_form)
+    with text_column:
+        st.subheader('To know about information about new released movies')
+        st.write(
+            """
+            To know the latest box-office collectins!
+            It makes you more interesting to watch videos
+            In these videos i will show complete detail about box-office collection
+            """
+        )
+
+        st.markdown('[Watch Video...](https://youtu.be/IWoCyIFIH1g?si=OEoUK43GfMhgl_0C')
+
+# ---- CONTACT -----
+with st.container():
+    st.write('---')
+    st.header('Get in Touch with me')
+    st.write('##')
+
+    # Documentation: https://formsubmit.co/ !!! CHANGE EMAIL ADDRESS !!!
+    contact_form= """
+    <form action="https://formsubmit.co/chennabasavnn@gmail.com" method="POST">
+        <input type='hidden' name='_captcha' value='false'>
+        <input type="text" name="name" placeholder='Your name' required>
+        <input type="email" name="email" placeholder='Your email' required>
+        <textarea name='message' placeholder='Your message here' required></textarea>
+        <button type="submit">Send</button>
+    </form>
+  
+    """
+
+
+        
+    left_column,right_column=st.columns(2)
+    with left_column:
+        st.markdown(contact_form,unsafe_allow_html=True)
+    with right_column:
+        st.empty()
+
+    
+
